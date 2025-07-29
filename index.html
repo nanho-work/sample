@@ -13,10 +13,15 @@
     <script>
       function setupCameraStream() {
         const video = document.getElementById("cam");
-        if (!video) return;
+        if (!video) {
+          console.error("비디오 태그가 없음");
+          return;
+        }
+
         navigator.mediaDevices
           .getUserMedia({ video: { facingMode: "environment" }, audio: false })
           .then((stream) => {
+            console.log("카메라 연결 성공");
             video.srcObject = stream;
             video.play();
           })
@@ -25,12 +30,7 @@
           });
       }
 
-      window.onload = () => {
-        if (typeof navigateAndSpeak === "function") {
-          window.navigateAndSpeak = navigateAndSpeak;
-        }
-        setupCameraStream();
-      };
+      
     </script>
   </head>
   <body>
@@ -69,3 +69,24 @@
     </a-scene>
   </body>
 </html>
+    <script>
+      function speakText(text) {
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = "ko-KR";
+        window.speechSynthesis.speak(msg);
+      }
+
+      function navigateAndSpeak(url, text) {
+        speakText(text);
+        setTimeout(() => {
+          window.location.href = url;
+        }, 2000);
+      }
+
+      window.onload = () => {
+        console.log("페이지 로드됨");
+        setupCameraStream();
+        speakText("안녕하세요. 한국도로공사 민원 포털입니다. 원하시는 서비스를 선택해주세요.");
+      };
+    </script>

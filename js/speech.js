@@ -18,3 +18,5 @@ function navigateAndSpeak(url, text) {
     window.location.href = url;
   }, 2000); // 음성 안내 후 2초 뒤 이동
 }
+
+window.navigateAndSpeak = navigateAndSpeak;

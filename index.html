@@ -17,11 +17,13 @@
           console.error("비디오 태그가 없음");
           return;
         }
+        console.log("비디오 태그 존재 확인 완료");
 
         navigator.mediaDevices
           .getUserMedia({ video: { facingMode: "environment" }, audio: false })
           .then((stream) => {
             console.log("카메라 연결 성공");
+            console.log("스트림 객체 확인:", stream);
             video.srcObject = stream;
             video.play();
           })
@@ -42,25 +44,25 @@
 
       <!-- 메뉴 1: 하이패스 -->
       <a-box position="-3 1.5 -4" color="#EF4444"
-             onclick="navigateAndSpeak('https://happypass.co.kr', '하이패스 민원 서비스로 이동합니다.')">
+             onclick="console.log('박스 클릭됨: 하이패스'); navigateAndSpeak('https://happypass.co.kr', '하이패스 민원 서비스로 이동합니다.')">
         <a-text value="하이패스" align="center" position="0 -0.75 0.6" rotation="0 0 0" color="white" width="4"></a-text>
       </a-box>
 
       <!-- 메뉴 2: 미납 통행료 -->
       <a-box position="-1 1.5 -4" color="#F59E0B"
-             onclick="navigateAndSpeak('https://tollpay.co.kr', '미납 통행료 확인 페이지로 이동합니다.')">
+             onclick="console.log('박스 클릭됨: 미납 통행료'); navigateAndSpeak('https://tollpay.co.kr', '미납 통행료 확인 페이지로 이동합니다.')">
         <a-text value="미납 통행료" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
       </a-box>
 
       <!-- 메뉴 3: 교통정보 -->
       <a-box position="1 1.5 -4" color="#3B82F6"
-             onclick="navigateAndSpeak('https://roadinfo.co.kr', '실시간 교통정보 시스템입니다.')">
+             onclick="console.log('박스 클릭됨: 교통정보'); navigateAndSpeak('https://roadinfo.co.kr', '실시간 교통정보 시스템입니다.')">
         <a-text value="교통정보" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
       </a-box>
 
       <!-- 메뉴 4: 고객센터 -->
       <a-box position="3 1.5 -4" color="#10B981"
-             onclick="navigateAndSpeak('https://customer.hd.co.kr', '고객센터로 연결합니다.')">
+             onclick="console.log('박스 클릭됨: 고객센터'); navigateAndSpeak('https://customer.hd.co.kr', '고객센터로 연결합니다.')">
         <a-text value="고객센터" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
       </a-box>
 
@@ -74,19 +76,24 @@
         const msg = new SpeechSynthesisUtterance();
         msg.text = text;
         msg.lang = "ko-KR";
+        console.log("음성 안내 시작:", text);
         window.speechSynthesis.speak(msg);
       }
 
       function navigateAndSpeak(url, text) {
         speakText(text);
+        console.log("페이지 이동 준비:", url);
         setTimeout(() => {
+          console.log("페이지 이동 중:", url);
           window.location.href = url;
         }, 2000);
       }
 
       window.onload = () => {
         console.log("페이지 로드됨");
+        console.log("초기 음성 출력 시작");
         setupCameraStream();
+        console.log("카메라 스트림 초기화 요청됨");
         speakText("안녕하세요. 한국도로공사 민원 포털입니다. 원하시는 서비스를 선택해주세요.");
       };
     </script>

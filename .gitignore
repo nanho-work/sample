@@ -1,0 +1,30 @@
+# macOS 시스템 파일
+.DS_Store
+
+# 환경 변수 파일 (보안 이슈 대비)
+.env
+.env.local
+.env.production
+.env.development
+
+# 로그 파일
+*.log
+
+# Node.js 관련 (추후 npm 도입 시)
+node_modules/
+package-lock.json
+
+# 빌드 결과물 (예: Vite, Webpack, Tailwind 사용 시)
+dist/
+build/
+.next/
+out/
+.cache/
+
+# VSCode 설정 파일
+.vscode/
+
+# OS/편집기 임시 파일
+Thumbs.db
+*.swp
+*~

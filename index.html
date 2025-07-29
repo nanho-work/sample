@@ -2,22 +2,25 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>AR 민원 포털</title>
+    <title>AR 민원 포털 샘플</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="./js/speech.js" defer></script>
-    <link rel="stylesheet" href="./styles/main.css" />
+    <script>
+      function speakText(text) {
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = "ko-KR";
+        window.speechSynthesis.speak(msg);
+      }
+    </script>
   </head>
   <body>
     <a-scene>
-      <!-- 배경 -->
-      <a-sky color="#ECECEC"></a-sky>
+      <a-sky color="#DFF6FF"></a-sky>
 
-      <!-- 버튼 예시 -->
-      <a-box position="-2 1.5 -4" color="tomato" 
-             event-set__click="_event: click; color: green" 
-             onclick="navigateTo('https://하이패스URL')"></a-box>
+      <a-box position="0 1.5 -4" color="#EF4444"
+             onclick="speakText('하이패스 민원 포털입니다. 원하시는 서비스를 선택해주세요')">
+      </a-box>
 
-      <!-- 카메라 -->
       <a-entity camera look-controls></a-entity>
     </a-scene>
   </body>

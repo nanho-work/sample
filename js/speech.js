@@ -1,10 +1,20 @@
 window.onload = () => {
   const msg = new SpeechSynthesisUtterance();
-  msg.text = "안녕하세요. 민원 포털에 오신 것을 환영합니다.";
+  msg.text = "안녕하세요. 한국도로공사 민원 포털입니다. 원하시는 서비스를 선택해주세요.";
   msg.lang = "ko-KR";
   window.speechSynthesis.speak(msg);
 };
 
-function navigateTo(url) {
-  window.location.href = url;
+function speakText(text) {
+  const msg = new SpeechSynthesisUtterance();
+  msg.text = text;
+  msg.lang = "ko-KR";
+  window.speechSynthesis.speak(msg);
+}
+
+function navigateAndSpeak(url, text) {
+  speakText(text);
+  setTimeout(() => {
+    window.location.href = url;
+  }, 2000); // 음성 안내 후 2초 뒤 이동
 }

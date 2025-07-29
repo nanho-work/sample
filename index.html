@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
-    <title>AR 민원 포털 샘플</title>
+    <title>한국도로공사 AR 민원 포털</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script>
-      function speakText(text) {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        msg.lang = "ko-KR";
-        window.speechSynthesis.speak(msg);
-      }
-    </script>
+    <script defer src="./js/speech.js"></script>
+    <style>
+      body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+      a-box:hover { cursor: pointer; }
+    </style>
   </head>
   <body>
     <a-scene>
-      <a-sky color="#DFF6FF"></a-sky>
+      <a-sky color="#F0F9FF"></a-sky>
 
-      <a-box position="0 1.5 -4" color="#EF4444"
-             onclick="speakText('하이패스 민원 포털입니다. 원하시는 서비스를 선택해주세요')">
+      <!-- 메뉴 1: 하이패스 -->
+      <a-box position="-3 1.5 -4" color="#EF4444"
+             onclick="navigateAndSpeak('https://happypass.co.kr', '하이패스 민원 서비스로 이동합니다.')">
+        <a-text value="하이패스" align="center" position="0 -0.75 0.6" rotation="0 0 0" color="white" width="4"></a-text>
       </a-box>
 
+      <!-- 메뉴 2: 미납 통행료 -->
+      <a-box position="-1 1.5 -4" color="#F59E0B"
+             onclick="navigateAndSpeak('https://tollpay.co.kr', '미납 통행료 확인 페이지로 이동합니다.')">
+        <a-text value="미납 통행료" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
+      </a-box>
+
+      <!-- 메뉴 3: 교통정보 -->
+      <a-box position="1 1.5 -4" color="#3B82F6"
+             onclick="navigateAndSpeak('https://roadinfo.co.kr', '실시간 교통정보 시스템입니다.')">
+        <a-text value="교통정보" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
+      </a-box>
+
+      <!-- 메뉴 4: 고객센터 -->
+      <a-box position="3 1.5 -4" color="#10B981"
+             onclick="navigateAndSpeak('https://customer.hd.co.kr', '고객센터로 연결합니다.')">
+        <a-text value="고객센터" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
+      </a-box>
+
+      <!-- 카메라 -->
       <a-entity camera look-controls></a-entity>
     </a-scene>
   </body>

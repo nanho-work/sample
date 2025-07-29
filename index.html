@@ -13,10 +13,7 @@
   </head>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
-      <a-assets>
-        <video id="cam" autoplay playsinline webkit-playsinline muted></video>
-      </a-assets>
-      <a-video src="#cam" position="0 1.5 -5" width="20" height="10" rotation="0 0 0"></a-video>
+      <a-sky color="#ECECEC"></a-sky>
 
       <!-- 메뉴 1: 하이패스 -->
       <a-box id="box1" class="clickable" box-click-handler position="-3 1.5 -4" color="#EF4444">
@@ -50,27 +47,6 @@
       </a-entity>
     </a-scene>
     <script>
-      function setupCameraStream() {
-        const video = document.getElementById("cam");
-        if (!video) {
-          console.error("비디오 태그가 없음");
-          return;
-        }
-        console.log("비디오 태그 존재 확인 완료");
-
-        navigator.mediaDevices
-          .getUserMedia({ video: { facingMode: "environment" }, audio: false })
-          .then((stream) => {
-            console.log("카메라 연결 성공");
-            console.log("스트림 객체 확인:", stream);
-            video.srcObject = stream;
-            video.play();
-          })
-          .catch((err) => {
-            console.error("카메라 접근 실패:", err);
-          });
-      }
-
       function speakText(text) {
         const msg = new SpeechSynthesisUtterance();
         msg.text = text;
@@ -90,8 +66,6 @@
 
       window.onload = () => {
         console.log("페이지 로드됨");
-        setupCameraStream();
-        console.log("카메라 스트림 초기화 요청됨");
         speakText("안녕하세요. 한국도로공사 민원 포털입니다. 원하시는 서비스를 선택해주세요.");
 
         document.getElementById("box1").addEventListener("click", () => {

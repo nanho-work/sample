@@ -13,7 +13,27 @@
   </head>
   <body>
     <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+      <a-assets>
+        <img id="img-bs01" src="./assets/BS01.png" />
+        <img id="img-cbs01" src="./assets/CBS_01_001.jpg" />
+        <img id="img-cbs02" src="./assets/CBS_02_001.jpg" />
+        <img id="img-cbs03" src="./assets/CBS_03_001.jpg" />
+        <img id="img-slide1" src="./assets/E123B529-D9D7-4B7E-BD94-28BEB4382EF1.png" />
+        <img id="img-slide2" src="./assets/06EFEF06-6AFE-4C8F-A29B-77D86C0ED836.png" />
+        <img id="img-slide3" src="./assets/1E7120A4-BACC-4118-AF7F-64EEAE0598C3.png" />
+        <img id="img-slide4" src="./assets/49D92C53-BE74-4223-AF9D-339D4E39DA13.png" />
+      </a-assets>
       <a-sky src="./assets/BS01.png"></a-sky>
+      <!-- 이미지 박스들 예시 (업로드한 이미지로 3D 박스 표시) -->
+      <a-box position="-2 1.8 -3" width="1.5" height="1" depth="0.01" material="src: #img-bs01"></a-box>
+      <a-box position="0 1.8 -3" width="1.5" height="1" depth="0.01" material="src: #img-cbs01"></a-box>
+      <a-box position="2 1.8 -3" width="1.5" height="1" depth="0.01" material="src: #img-cbs02"></a-box>
+
+      <a-box position="-2 0.3 -3" width="1.5" height="1" depth="0.01" material="src: #img-slide1"></a-box>
+      <a-box position="0 0.3 -3" width="1.5" height="1" depth="0.01" material="src: #img-slide2"></a-box>
+      <a-box position="2 0.3 -3" width="1.5" height="1" depth="0.01" material="src: #img-slide3"></a-box>
+
+      <a-box position="0 -1.2 -3" width="3.2" height="1" depth="0.01" material="src: #img-slide4"></a-box>
 
       <!-- 메뉴 1: 하이패스 -->
       <a-box id="box1" class="clickable" box-click-handler position="-3 1.5 -4" color="#EF4444" src="./assets/CBS_01_001.jpg">

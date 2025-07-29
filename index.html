@@ -111,6 +111,30 @@
           navigateAndSpeak("https://customer.hd.co.kr", "고객센터로 연결합니다.");
         });
       };
+
+      // 추가: A-Frame raycaster 문제 해결용 일반 클릭 이벤트 등록
+      document.querySelectorAll('.clickable').forEach(box => {
+        box.addEventListener('mousedown', (e) => {
+          const id = box.getAttribute('id');
+          console.log("마우스 클릭 감지됨:", id);
+          switch (id) {
+            case "box1":
+              navigateAndSpeak("https://thekevinstaxlab.com/", "하이패스 민원 서비스로 이동합니다.");
+              break;
+            case "box2":
+              navigateAndSpeak("https://orangym.co.kr/", "미납 통행료 확인 페이지로 이동합니다.");
+              break;
+            case "box3":
+              navigateAndSpeak("https://yongs-dining.com/", "실시간 교통정보 시스템입니다.");
+              break;
+            case "box4":
+              navigateAndSpeak("https://thekevinstaxlab.com/", "고객센터로 연결합니다.");
+              break;
+            default:
+              console.warn("정의되지 않은 박스 ID:", id);
+          }
+        });
+      });
     </script>
   </body>
 </html>

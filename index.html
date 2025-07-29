@@ -12,29 +12,29 @@
     </style>
   </head>
   <body>
-    <a-scene>
+    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
       <a-assets>
         <video id="cam" autoplay playsinline webkit-playsinline muted></video>
       </a-assets>
       <a-video src="#cam" position="0 1.5 -5" width="20" height="10" rotation="0 0 0"></a-video>
 
       <!-- 메뉴 1: 하이패스 -->
-      <a-box id="box1" class="clickable" position="-3 1.5 -4" color="#EF4444">
+      <a-box id="box1" class="clickable" box-click-handler position="-3 1.5 -4" color="#EF4444">
         <a-text value="하이패스" align="center" position="0 -0.75 0.6" rotation="0 0 0" color="white" width="4"></a-text>
       </a-box>
 
       <!-- 메뉴 2: 미납 통행료 -->
-      <a-box id="box2" class="clickable" position="-1 1.5 -4" color="#F59E0B">
+      <a-box id="box2" class="clickable" box-click-handler position="-1 1.5 -4" color="#F59E0B">
         <a-text value="미납 통행료" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
       </a-box>
 
       <!-- 메뉴 3: 교통정보 -->
-      <a-box id="box3" class="clickable" position="1 1.5 -4" color="#3B82F6">
+      <a-box id="box3" class="clickable" box-click-handler position="1 1.5 -4" color="#3B82F6">
         <a-text value="교통정보" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
       </a-box>
 
       <!-- 메뉴 4: 고객센터 -->
-      <a-box id="box4" class="clickable" position="3 1.5 -4" color="#10B981">
+      <a-box id="box4" class="clickable" box-click-handler position="3 1.5 -4" color="#10B981">
         <a-text value="고객센터" align="center" position="0 -0.75 0.6" color="white" width="4"></a-text>
       </a-box>
 
@@ -134,6 +134,31 @@
               console.warn("정의되지 않은 박스 ID:", id);
           }
         });
+      });
+
+      AFRAME.registerComponent('box-click-handler', {
+        init: function () {
+          this.el.addEventListener('click', () => {
+            const id = this.el.getAttribute('id');
+            console.log("박스 클릭 감지됨 (A-Frame 이벤트):", id);
+            switch (id) {
+              case "box1":
+                navigateAndSpeak("https://thekevinstaxlab.com/", "하이패스 민원 서비스로 이동합니다.");
+                break;
+              case "box2":
+                navigateAndSpeak("https://orangym.co.kr/", "미납 통행료 확인 페이지로 이동합니다.");
+                break;
+              case "box3":
+                navigateAndSpeak("https://yongs-dining.com/", "실시간 교통정보 시스템입니다.");
+                break;
+              case "box4":
+                navigateAndSpeak("https://thekevinstaxlab.com/", "고객센터로 연결합니다.");
+                break;
+              default:
+                console.warn("정의되지 않은 박스 ID:", id);
+            }
+          });
+        }
       });
     </script>
   </body>
